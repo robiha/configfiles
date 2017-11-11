@@ -1,0 +1,72 @@
+# vim: fdm=marker
+# MirBSD Korn Shell resource file.
+
+# Options {{{1
+case ${KSH_VERSION:-} in
+*LEGACY\ KSH*|*MIRBSD\ KSH*) ;;
+*) \return 0 ;;
+esac
+
+HISTFILE=$HOME/.mksh_history
+HISTSIZE=2048
+
+# Alias {{{1
+alias ls='ls --color=auto' l='ls -F' ll='l -l' la='l -la'
+alias cp='cp -i'
+alias grep='grep --colour=auto'
+alias egrep='egrep --colour=auto'
+alias fgrep='fgrep --colour=auto'
+[[ -r $HOME/.alias ]] && . $HOME/.alias
+
+
+# Export {{{1
+# Less Colors {{{2
+export LESS_TERMCAP_mb=$'\E[01;32m'
+export LESS_TERMCAP_md=$'\E[01;32m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;47;34m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;36m'
+export LESS=-r
+
+# Yaourt colors {{{2
+export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
+
+# Prompt {{{1
+x=$(print "\\a\\r")  # Delimiting character; in this case the ASCII bell.
+g=$(print "\\a\\e[0;32m\\a")  # Green.
+G=$(print "\\a\\e[1;32m\\a")  # Bold green.
+b=$(print "\\a\\e[0;34m\\a")  # Blue.
+B=$(print "\\a\\e[1;34m\\a")  # Bold blue.
+m=$(print "\\a\\e[0;35m\\a")  # Magenta.
+M=$(print "\\a\\e[1;35m\\a")  # Bold magenta.
+N=$(print "\\a\\e[0m\\a")     # Norman text.
+PS1='$x$G${USER:=$(id -un)}'"$M@${HOSTNAME:=$(hostname)}:"'$B${PWD/#$HOME/"~"}'" \$ $N"
+
+PS4='[$EPOCHREALTIME] '
+
+# Functions {{{1
+# extr - archive extractor
+# usage: extr <file>
+extr ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via extr()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
