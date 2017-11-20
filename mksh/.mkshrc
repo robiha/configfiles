@@ -1,5 +1,7 @@
-# vim: fdm=marker
-# MirBSD Korn Shell resource file.
+# Description: MirBSD Korn Shell resource file.
+# Host: mlixa
+# Maintainer: robiha <hallin.rle@gmail.com>
+# Modified: 2017-11-13
 
 # Options {{{1
 case ${KSH_VERSION:-} in
@@ -9,6 +11,10 @@ esac
 
 HISTFILE=$HOME/.mksh_history
 HISTSIZE=2048
+
+if [[ -r $HOME/.base16-shell/scripts/base16-default-dark.sh ]]; then
+	. $HOME/.base16-shell/scripts/base16-default-dark.sh
+fi
 
 # Alias {{{1
 alias ls='ls --color=auto' l='ls -F' ll='l -l' la='l -la'
@@ -47,9 +53,9 @@ PS1='$x$G${USER:=$(id -un)}'"$M@${HOSTNAME:=$(hostname)}:"'$B${PWD/#$HOME/"~"}'"
 PS4='[$EPOCHREALTIME] '
 
 # Functions {{{1
-# extr - archive extractor
-# usage: extr <file>
-extr ()
+# ex - archive extractor
+# usage: ex <file>
+ex ()
 {
   if [ -f $1 ] ; then
     case $1 in
@@ -64,9 +70,12 @@ extr ()
       *.zip)       unzip $1     ;;
       *.Z)         uncompress $1;;
       *.7z)        7z x $1      ;;
+      *.xz)        xz -d $1     ;;
       *)           echo "'$1' cannot be extracted via extr()" ;;
     esac
   else
     echo "'$1' is not a valid file"
   fi
 }
+
+# vim: fdm=marker

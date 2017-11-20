@@ -2,7 +2,7 @@
 " Description: Neovim configuration file
 " Host: mlixa
 " Maintainer: robiha <hallin.rle@gmail.com>
-" Modified: 2017-11-02
+" Modified: 2017-11-13
 
 " Plugins {{{1
 " Download and install vim-plug if not present.
@@ -22,7 +22,6 @@ Plug 'lervag/vimtex'                     " LaTex support for vim
 Plug 'junegunn/goyo.vim'                 " Distraction free writing
 Plug 'vim-pandoc/vim-pandoc'             " Pandoc markdown
 Plug 'vim-pandoc/vim-pandoc-syntax'      " Pandoc markdown
-Plug 'tpope/vim-sleuth'                  " Automatic indention type setting
 "Plug 'rust-lang/rust.vim'                " Rust-lang
 "Plug 'vifm/neovim-vifm'                  " Vifm support (file manager)
 call plug#end()
@@ -30,8 +29,10 @@ call plug#end()
 " Settings {{{1
 set termguicolors
 set background=dark
+"let base16colorspace=256
 colorscheme base16-default-dark
 set confirm
+set complete+=kspell
 "set cursorline
 set foldenable
 set foldlevelstart=0
@@ -86,3 +87,11 @@ iab <expr> dtts strftime("%F %T")
 " Pandoc {{{1
 let g:pandoc#formatting#mode='hA'
 let g:pandoc#spell#default_langs=['en_gb', 'sv']
+let g:pandoc#toc#position="left"
+let g:pandoc#toc#close_after_navigating=0
+let g:pandoc#formatting#smart_autoformat_on_cursormoved=1
+
+" Netrw {{{1
+let g:netrw_liststyle=3
+let g:netrw_banner=0
+let g:netrw_altv=1

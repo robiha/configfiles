@@ -1,6 +1,10 @@
 #!/bin/dash
+# Description: bspwm configuration file
+# Host: mlixa
+# Maintainer: robiha <hallin.rle@gmail.com>
+# Modified: 2017-11-12
 
-# Various settings.
+# Various settings {{{1
 GAP=3
 #PANEL_HEIGHT=2
 bspc config window_gap $GAP;
@@ -13,7 +17,7 @@ bspc config gapless_monocle      false
 bspc config paddingless_monocle  false
 bspc config single_monocle       false
 
-# Color settings.
+# Color settings
 bspc config border_width                  1
 bspc config focused_border_color          "#1793D1"
 bspc config normal_border_color           "#000000"
@@ -28,9 +32,9 @@ bspc config split_ratio     0.52
 # Create and name desktop for multiple monitors.
 $HOME/.config/bspwm/workspaces_multimonitor.sh &
 
-# Rules
+# Rules {{{1
 
-# Autostart
+# Autostart {{{1
 sxhkd &
 compton &
 xfsettingsd &
@@ -45,3 +49,5 @@ pamac-tray &
 redshift-gtk &
 megasync &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# vim: fdm=marker
