@@ -2,7 +2,7 @@
 " Description: Neovim configuration file
 " Host: mlixa
 " Maintainer: robiha <hallin.rle@gmail.com>
-" Modified: 2017-11-13
+" Modified: 2017-12-19
 
 " Plugins {{{1
 " Download and install vim-plug if not present.
@@ -17,13 +17,16 @@ Plug 'vimwiki/vimwiki'                   " Personal wiki for vim
 Plug 'chriskempson/base16-vim'           " The Base16 colorschemes
 "Plug 'reedes/vim-colors-pencil'          " Inspired by Ai-writer
 Plug 'editorconfig/editorconfig-vim'     " http://editorconfig.org/
-Plug 'lervag/vimtex'                     " LaTex support for vim
+"Plug 'lervag/vimtex'                     " LaTex support for vim
 "Plug 'xuhdev/vim-latex-live-preview'     " Live preview of latex
 Plug 'junegunn/goyo.vim'                 " Distraction free writing
 Plug 'vim-pandoc/vim-pandoc'             " Pandoc markdown
 Plug 'vim-pandoc/vim-pandoc-syntax'      " Pandoc markdown
 "Plug 'rust-lang/rust.vim'                " Rust-lang
 "Plug 'vifm/neovim-vifm'                  " Vifm support (file manager)
+Plug 'tpope/vim-eunuch'                  " Helpers for UNIX
+Plug 'tpope/vim-commentary'              " Comment stuff out
+Plug 'tpope/vim-surround'                " Quoting/parenthesizing made simple
 call plug#end()
 
 " Settings {{{1
@@ -72,7 +75,6 @@ nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
 nnoremap <M-l> <C-w>l
 tnoremap <leader><ESC> <C-\><C-n>
-tnoremap jk <C-\><C-n>
 tnoremap <M-h> <C-\><C-n><C-w>h
 tnoremap <M-j> <C-\><C-n><C-w>j
 tnoremap <M-k> <C-\><C-n><C-w>k
@@ -87,11 +89,8 @@ iab <expr> dtts strftime("%F %T")
 " Pandoc {{{1
 let g:pandoc#formatting#mode='hA'
 let g:pandoc#spell#default_langs=['en_gb', 'sv']
-let g:pandoc#toc#position="left"
-let g:pandoc#toc#close_after_navigating=0
-let g:pandoc#formatting#smart_autoformat_on_cursormoved=1
 
 " Netrw {{{1
 let g:netrw_liststyle=3
-let g:netrw_banner=0
+let g:netrw_banner=1
 let g:netrw_altv=1

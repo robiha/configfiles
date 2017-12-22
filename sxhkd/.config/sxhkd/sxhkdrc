@@ -1,4 +1,9 @@
-# wm independent hotkeys
+# Description: sxhkd configuration file
+# Host: mlixa
+# Maintainer: robiha <hallin.rle@gmail.com>
+# Modified: 2017-11-21
+
+# Window manger independent hotkeys {{{1
 # terminal emulator
 super + Return
 	st
@@ -27,10 +32,20 @@ super + {_,shift + }w
 super + m
 	bspc desktop -l next
 
-#
-# state/flags
-#
+super + Delete
+	light-locker-command --lock
 
+# Media keys {{{2
+super + F8
+	playerctl play-pause
+
+super + F7
+	playerctl next
+
+super + F6
+	playerctl previous
+
+# State and flags {{{1
 # set the window state
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
@@ -39,10 +54,7 @@ super + {t,shift + t,s,f}
 super + ctrl + {x,y,z}
 	bspc node -g {locked,sticky,private}
 
-#
-# focus/swap
-#
-
+# Focus and swap {{{1
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
@@ -73,10 +85,7 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-#
-# preselect
-#
-
+# Preselect {{{1
 # preselect the direction
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
@@ -93,10 +102,7 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#
-# move/resize
-#
-
+# Move and resize {{{1
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
@@ -109,15 +115,4 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-#
-# Media keys
-#
-super + F8
-	playerctl play-pause
-
-super + F7
-	playerctl next
-
-super + F6
-	playerctl previous
-
+# vim: fdm=marker

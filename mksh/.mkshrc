@@ -1,7 +1,7 @@
 # Description: MirBSD Korn Shell resource file.
 # Host: mlixa
 # Maintainer: robiha <hallin.rle@gmail.com>
-# Modified: 2017-11-13
+# Modified: 2017-12-19
 
 # Options {{{1
 case ${KSH_VERSION:-} in
@@ -19,6 +19,7 @@ fi
 # Alias {{{1
 alias ls='ls --color=auto' l='ls -F' ll='l -l' la='l -la'
 alias cp='cp -i'
+alias rm='rm -I'
 alias grep='grep --colour=auto'
 alias egrep='egrep --colour=auto'
 alias fgrep='fgrep --colour=auto'
